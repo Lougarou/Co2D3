@@ -36,13 +36,6 @@ function drawWorldMap(){
 	  .projection(projection);
 	var g = worldSvg.append("g").attr("class","mapclass");
 
-	var modalTip = d3.select("#divMap")
-				.append("div")
-				.style("position", "absolute")
-				.style("z-index", "10")
-				.style("visibility", "hidden")
-				.attr("class","d3-tip")
-				.text("");
 	d3.json("countries.topojson", function(error, topology) {
 		// set projection parameters e.g. to zoom in
 		projection.center([0, 10]);
@@ -53,6 +46,7 @@ function drawWorldMap(){
 		.append("path").attr("d", path)
 	    .attr("class","country")
 	  	.attr("stroke","black").attr("fill", "white").attr("stroke-width","1");
+		
 		 var radius = (projection([10.0,0])[0]-projection([0.0,0])[0])/2;
 		var heatmapColour = d3.scale.quantize()
 		  .domain([390,410])
